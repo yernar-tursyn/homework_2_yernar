@@ -14,52 +14,35 @@ class App extends Component {
       {number: 32}
     ]
 }
-  
-// changeNumbers = () => {
-//   const numbers = [...this.state.numbers];
-//   const int = {...numbers[0]};
-//   int.num = this.getRandomInt(100);
-  //   int.number = int.num;
-  //   numbers[0] = int;
-  //   this.setState({numbers});
-  //   console.log(numbers[0]);
-  // }
 
   changeNumbers = () => {
     const numbers = [...this.state.numbers];
-    const generatedNumbers = new Set(); // Создаем пустой набор для отслеживания уже сгенерированных чисел
-  
-    // Заменяем значения number на уникальные случайные числа и обновляем массив
+    const generatedNumbers = new Set(); 
     const updatedNumbers = numbers.map(item => {
       const newItem = {...item};
       let randomNumber;
       do {
-        randomNumber = this.getRandomInt(100); // Генерируем случайное число
-      } while (generatedNumbers.has(randomNumber)); // Проверяем, было ли уже сгенерировано такое число
-      generatedNumbers.add(randomNumber); // Добавляем сгенерированное число в набор
-      newItem.number = randomNumber; // Присваиваем сгенерированное число свойству number
+        randomNumber = this.getRandomInt(100);
+      } while (generatedNumbers.has(randomNumber)); 
+      generatedNumbers.add(randomNumber); 
+      newItem.number = randomNumber; 
       return newItem;
     });
   
-    // Устанавливаем новое состояние компонента с измененным массивом updatedNumbers
     updatedNumbers.sort((a, b) => a.number - b.number);
     this.setState({numbers: updatedNumbers});
   
-    // Выводим в консоль новое значение свойства number для всех элементов массива updatedNumbers
     updatedNumbers.forEach(item => {
       console.log(item.number);
     });
   }
   
-  
-
 
   getRandomInt(max) {
     return Math.floor(Math.random() * max);
   }
 
   render () {
-    // console.log(this.numbers);
     return (
       <div className="App">
         <button onClick={this.changeNumbers}>New numbers</button>
