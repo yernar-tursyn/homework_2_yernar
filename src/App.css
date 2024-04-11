@@ -1,5 +1,20 @@
+div#root {
+  display: flex;
+  justify-content: center;
+}
+
 .App {
   text-align: center;
+  display: flex;
+  gap: 10px;
+}
+
+.App p {
+  border: 1px solid black;
+  padding: 5px;
+  background-color: gray;
+  border-radius: 5px;
+  color: white;
 }
 
 .App-logo {
